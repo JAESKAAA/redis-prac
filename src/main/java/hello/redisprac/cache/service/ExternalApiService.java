@@ -2,6 +2,7 @@ package hello.redisprac.cache.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,7 @@ public class ExternalApiService {
 
     }
 
+    @Cacheable(cacheNames = "userAgeCache", key = "#userId")
     public int getUserAge(String userId) {
 
         try {
